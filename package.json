@@ -1,0 +1,29 @@
+{
+  "name": "jabstract",
+  "version": "1.0.0",
+  "description": "Test tool for overridable json fixtures in JS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/internap/js-jabstract"
+  },
+  "main": "jabstract.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "jshint": "./node_modules/jshint/bin/jshint . --exclude node_modules"
+  },
+  "author": "Internap",
+  "license": "Apache-2.0",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "devDependencies": {
+    "jshint": "2.9.5",
+    "mocha": "4.0.1"
+  }
+}
