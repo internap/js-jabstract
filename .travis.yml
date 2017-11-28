@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - 8.9
+  - 6.12
 
 install:
   - npm install
@@ -10,3 +11,12 @@ script:
   - npm run jshint
 
 sudo: false
+
+deploy:
+  provider: npm
+  email: opensource@internap.com
+  api_key:
+    secure: bA15D2lJkYK1gLZ2LOkCSqe9HHeRpRW4JCZvWKSXuaTjK6uu7OaChe/jyzJChwLC/qqMxKTLvEAr2kY9uHVjWFlI3fqBfqglmhb+S2x3yZljhwaTsyydqjEAehm8ZME6G+riEF1GNTLkNBBkg0T8oikTpBBnJgU5KA1XDC//5uU9H9D22b0mNlSrGaK2fesfjOmraa2++GKa4Lrk6itmA985TojcZ9pAOWFWOBF79tcEAoYiwtih5Esv8ZD6UyzV/WvociydA1MqO3FAObEBTjPXZgZq0upTAlgRG61hfhk2hxwiF+6qAbt36X6BlZ/82OGW6ZJHpWrzMHsJl/VCfp2NXPgvR52KElVsVctG2+aJI1Rv3z516pHGmmRLp40wHgJfIWhF7a5mz+kSLKdT0buZ7rIzW/r10oIOv5Kw4HZzg9TRnF6tk9YFwuYaJCUeoRKdV6u5JNwVv1mdZ/jlsjiaMllrLDMTbmoQP00HAq8C/+Dz9Q3yxlxzjnIrJG2XVQxohYrbZkoBkuBmpfQum8w0ZXWKnQ/dzCc7Mk9/la2CnpoMBM3oGhjOZg9OM/TD/y1ejh9mOw2fCVW4uJJFeVObY479b5OviemyuYyS5sADp8ArA+MsGleNOWJ46YMGIeJ2W0Z1QdatB489aoC7B2zgtO75jNCop/psWWzjOq4=
+  on:
+    tags: true
+    repo: internap/js-jabstract
