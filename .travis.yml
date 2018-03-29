@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 8.9
-  - 6.12
+  - "8"
+  - "6"
 
 install:
   - npm install
@@ -12,11 +12,16 @@ script:
 
 sudo: false
 
-deploy:
-  provider: npm
-  email: opensource@internap.com
-  api_key:
-    secure: 62LOZCkcZgEsx7ngcp7r7N9ZZrEqk3ZT/QQydYPux4JczeYg91z4E2F7Hw4E3HtiV22rlWGrEF8mfPlGsmlgjochxI+ykGneV5/Tmp4Oy2EdHQEg52ThfV9cggswMvD1N7XI0WUt8fMMyn0PaPYlVMBCuOGPCRU75IXqFfpL3DIK5NNG4A6KW2PJtO14kDzwfTnPkhLmyoPekU4m81Y222qRZYNagB4dPswYTd5THdZham1R4Z808bTe9yjfrr5tzqsNHDdV9Dd11F66dKYZt7E5jZ3zwpJxEpFVJofJBVJYw/2ZzLuuYTuWf4lrgtWjRoWETrqKQ8FR7cTB+w9FX6EF8kdXPw7MAO0Gqt29aVWQ34mRuoBmDHGG+geO0tIBe4IVpENjat8J2MuwIUKdNtwaN8juhYPnNs0ez7asXifObAhDryx0MglDUKXr1cZiceI4i8NI4qzj1loEJYajKxSOv9GgKwV8gghqX0CZkQC1KnfK1h26cuZLVnmdhrDLveFSAusI3tMNq8WURL+Gl47NWHKEIXUlRMPevgCjF5nop3/XdG1Eyx/pXryKAGLe/HiRVOTf946UQjKoVFqHCTc3R0WEftTPzYjwZidk8ZRw/fmVo70ni97lfhko+mDtZWt5zXBvoyhIGfIEkK9MenKnbV+jDakYIzdkjX9wFlI=
-  on:
-    tags: true
-    repo: internap/js-jabstract
+jobs:
+  include:
+    - stage: npm release
+      node_js: "8"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: opensource@internap.com
+        api_key:
+          secure: 62LOZCkcZgEsx7ngcp7r7N9ZZrEqk3ZT/QQydYPux4JczeYg91z4E2F7Hw4E3HtiV22rlWGrEF8mfPlGsmlgjochxI+ykGneV5/Tmp4Oy2EdHQEg52ThfV9cggswMvD1N7XI0WUt8fMMyn0PaPYlVMBCuOGPCRU75IXqFfpL3DIK5NNG4A6KW2PJtO14kDzwfTnPkhLmyoPekU4m81Y222qRZYNagB4dPswYTd5THdZham1R4Z808bTe9yjfrr5tzqsNHDdV9Dd11F66dKYZt7E5jZ3zwpJxEpFVJofJBVJYw/2ZzLuuYTuWf4lrgtWjRoWETrqKQ8FR7cTB+w9FX6EF8kdXPw7MAO0Gqt29aVWQ34mRuoBmDHGG+geO0tIBe4IVpENjat8J2MuwIUKdNtwaN8juhYPnNs0ez7asXifObAhDryx0MglDUKXr1cZiceI4i8NI4qzj1loEJYajKxSOv9GgKwV8gghqX0CZkQC1KnfK1h26cuZLVnmdhrDLveFSAusI3tMNq8WURL+Gl47NWHKEIXUlRMPevgCjF5nop3/XdG1Eyx/pXryKAGLe/HiRVOTf946UQjKoVFqHCTc3R0WEftTPzYjwZidk8ZRw/fmVo70ni97lfhko+mDtZWt5zXBvoyhIGfIEkK9MenKnbV+jDakYIzdkjX9wFlI=
+        on:
+          tags: true
+          repo: internap/js-jabstract
