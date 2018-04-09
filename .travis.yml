@@ -19,7 +19,7 @@ jobs:
       script: npm pack
     - stage: npm release
       node_js: "8"
-      script: echo "Deploying to npm ..."
+      script: npm install
       deploy:
         provider: npm
         email: opensource@internap.com
