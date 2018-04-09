@@ -12,8 +12,17 @@
   },
   "scripts": {
     "test": "mocha",
+    "prepack": "./node_modules/browserify/bin/cmd.js jabstract.js -o dist/jabstract-browser-es5.js --s jabstract -t [ babelify --presets [ env ] --plugins [ transform-object-assign ] ]",
     "jshint": "./node_modules/jshint/bin/jshint . --exclude node_modules"
   },
+  "files":[
+    "jabstract.js",
+    "package.json",
+    "dist",
+    "README.md",
+    "LICENSE",
+    "test"
+  ],
   "author": "Internap",
   "license": "Apache-2.0",
   "licenses": [
@@ -23,6 +32,11 @@
     }
   ],
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.1.1",
     "jshint": "2.9.5",
     "mocha": "4.0.1"
   }
