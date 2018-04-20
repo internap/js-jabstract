@@ -4,8 +4,8 @@
 const assert = require('assert');
 const jabstract = require('./../jabstract');
 
-describe('Will test jabstract', () => {
-  it('Check if the fixture has been overridden with new parameters.', () => {
+describe('jabstract', () => {
+  it('should override the original payload with the given values', () => {
     let apiResponse = jabstract({
       'client': {
         'name': 'John doe',
@@ -20,19 +20,20 @@ describe('Will test jabstract', () => {
       }
     });
 
-    assert.equal(JSON.stringify(response), JSON.stringify({
+    assert.deepEqual(response, {
       'client': {
         'name': 'Baboon v2.0',
         'email': 'johndoe@example.org'
       },
       'status': 'received'
-    }));
+    });
   });
 
-  it('jabstract gives a fresh copy of 2 fixtures', () => {
-    let apiResponse = new jabstract({
+  it('should start from a fresh copy at each invocation', () => {
+    let apiResponse = jabstract({
       'client': {
         'name': 'John doe',
+        'address': '123 street',
       }
     });
 
@@ -44,18 +45,47 @@ describe('Will test jabstract', () => {
 
     let response2 = apiResponse({
       'client': {
-        'name': 'Baboon v3.7'
+        'address': 'Some tree'
       }
     });
 
-    assert.equal(response1.client.name, 'Baboon v2.0');
-    assert.equal(response2.client.name, 'Baboon v3.7');
-
+    assert.deepEqual(response1.client, {'name': 'Baboon v2.0', 'address': '123 street',});
+    assert.deepEqual(response2.client, {'name': 'John doe', 'address': 'Some tree',});
   });
 
-  it(`Let you add a section because some \
-apis are weird and field are optional`, () => {
-    let apiResponse = new jabstract({
+  it('should make sure the given payload cannot affect the original one', () => {
+    let apiResponse = jabstract({
+      'client': {
+        'name': 'John doe',
+        'face': {
+          'eyes': {
+            'color': 'green',
+            'count': 2,
+          }
+        }
+      }
+    });
+
+    let response1 = apiResponse();
+    response1.client.face.eyes.color = 'red';
+
+    let response2 = apiResponse();
+
+    assert.deepEqual(response2, {
+      'client': {
+        'name': 'John doe',
+        'face': {
+          'eyes': {
+            'color': 'green',
+            'count': 2,
+          }
+        }
+      }
+    });
+  });
+
+  it(`should let you add a section because some apis are weird and field are optional`, () => {
+    let apiResponse = jabstract({
       'client': {
         'name': 'John doe',
       }
@@ -69,6 +99,30 @@ apis are weird and field are optional`, () => {
       }
     });
 
-    assert.equal(response.client.car.color, 'blue');
+    assert.deepEqual(response, {
+      'client': {
+        'name': 'John doe',
+        'car': {
+          'color': 'blue'
+        }
+      }
+    });
+  });
+
+  it(`should treat arrays as values rather than objects`, () => {
+    let apiResponse = jabstract({
+      'client': {
+        'name': 'John doe',
+        'hobbies': ['mocking', 'asserting']
+      }
+    });
+
+    let response = apiResponse({
+      'client': {
+        'hobbies': ['stubbing']
+      }
+    });
+
+    assert.deepEqual(response.client.hobbies, ['stubbing']);
   });
 });

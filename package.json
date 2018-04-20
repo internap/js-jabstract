@@ -15,7 +15,7 @@
     "prepack": "./node_modules/browserify/bin/cmd.js jabstract.js -o dist/jabstract-browser-es5.js --s jabstract -t [ babelify --presets [ env ] --plugins [ transform-object-assign ] ]",
     "jshint": "./node_modules/jshint/bin/jshint . --exclude node_modules"
   },
-  "files":[
+  "files": [
     "jabstract.js",
     "package.json",
     "dist",
