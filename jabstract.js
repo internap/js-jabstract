@@ -13,7 +13,7 @@ function merge(target, payload) {
   const newPayload = deepCopy(payload);
 
   Object.keys(target).forEach(k => {
-    if (isDict(target[k]) && k in payload) {
+    if (isDict(target[k]) && isDict(newPayload[k])) {
       newPayload[k] = merge(target[k], newPayload[k]);
     } else {
       newPayload[k] = target[k];
