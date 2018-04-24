@@ -1,6 +1,6 @@
 {
   "name": "jabstract",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Test tool for overridable json fixtures in JS",
   "repository": {
     "type": "git",
