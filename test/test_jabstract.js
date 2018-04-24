@@ -125,4 +125,22 @@ describe('jabstract', () => {
 
     assert.deepEqual(response.client.hobbies, ['stubbing']);
   });
+
+  it(`should allow null dicts in the fixtures`, () => {
+    let apiResponse = jabstract({
+      'client': {
+        'stuff': null
+      }
+    });
+
+    let response = apiResponse({
+      'client': {
+        'stuff': {
+          'car': 'tesla model 3'
+        }
+      }
+    });
+
+    assert.deepEqual(response.client.stuff.car, 'tesla model 3');
+  });
 });
