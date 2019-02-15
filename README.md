@@ -41,3 +41,7 @@ let response = apiResponse({
 ```
 
 \* note that `apiResponse` will keep its default value. So you can mock multiple fixtures for the same payload
+
+# Importing
+
+If you need to use jabstract for es5 (old nodejs or browser/karma) you can use the `dist/jabstract-browser-es5.js` file included in the nodejs package
